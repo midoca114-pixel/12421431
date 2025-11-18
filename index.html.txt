@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8" />
+<title>打字效果</title>
+<style>
+    body {
+        background: #ffffff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-size: 48px;
+        font-family: "Noto Sans TC", sans-serif;
+        font-weight: 700;
+    }
+
+    #text {
+        white-space: nowrap;
+    }
+
+    .blue {
+        color: #1e90ff; /* 藍色 */
+    }
+
+    .teal {
+        color: #009999; /* 藍綠色 */
+    }
+
+    .black {
+        color: #000000; /* 黑色 */
+    }
+</style>
+</head>
+<body>
+
+<div id="text"></div>
+
+<script>
+    // 每個字的資料結構：文字＋class 名稱
+    const content = [
+        { char: "貓", cls: "blue" },
+        { char: "貓", cls: "blue" },
+        { char: "鼠", cls: "teal" },
+        { char: "鼠", cls: "teal" },
+        { char: "生", cls: "black" },
+        { char: "活", cls: "black" },
+        { char: "日", cls: "black" },
+        { char: "記", cls: "black" },
+    ];
+
+    let index = 0;
+    const speed = 180; // 打字速度（毫秒）
+
+    function type() {
+        if (index < content.length) {
+            const span = document.createElement("span");
+            span.textContent = content[index].char;
+            span.className = content[index].cls;
+            document.getElementById("text").appendChild(span);
+
+            index++;
+            setTimeout(type, speed);
+        }
+    }
+
+    type();
+</script>
+
+</body>
+</html>
